@@ -15,27 +15,17 @@ import java.util.TreeSet;
 
 class Solution {
     public int lastStoneWeight(int[] stones) {
-        int x=0;
-        int y=0;
-        List<Integer> nos = new ArrayList<>();
-        for (int stone:stones) nos.add(stone);
-        Collections.sort(nos);
-        while (nos.size()>1) {
-            int count = nos.size();
-            if (nos.get(count-2)==nos.get(count-1)) {
-                nos.remove(count-1);
-                nos.remove(count-2);
-            } else {
-                int s1 = nos.get(count-1);
-                int s2 = nos.get(count-2);
-                nos.set(count-2,s1-s2);
-                nos.remove(count-1);
-                Collections.sort(nos);
-            }
+        int n = stones.length;
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        for (int stone:stones) {
+            maxHeap.offer(stone);
         }
-        if (nos.isEmpty()) return 0;
-        x=nos.get(0);
-        return x;
+        while (maxHeap.size()!=1) {
+            int s1= maxHeap.poll();
+            int s2= maxHeap.poll();
+            maxHeap.offer(Math.abs(s1-s2));
+        }
+        return maxHeap.poll();
     }
 }
 // @lc code=end
