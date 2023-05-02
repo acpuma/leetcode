@@ -6,10 +6,6 @@
 
 // @lc code=start
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 class Solution {
     public int nearestValidPoint(int x, int y, int[][] points) {
         int min=Integer.MAX_VALUE;
