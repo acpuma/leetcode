@@ -7,10 +7,7 @@
 // @lc code=start
 class Solution {
     public char findTheDifference(String s, String t) {
-        char c=0;
-        for (char cs:s.toCharArray()) c^=cs;
-        for (char cs:t.toCharArray()) c^=cs;
-        return c;
+        return (char)(s+t).chars().reduce(0, (c,d)-> c^d);
     }
 }
 // @lc code=end
