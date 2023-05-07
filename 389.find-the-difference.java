@@ -7,14 +7,10 @@
 // @lc code=start
 class Solution {
     public char findTheDifference(String s, String t) {
-        for (int i=0; i<t.length(); i++) {
-            if (s.contains(String.valueOf(t.charAt(i)))) {
-                s=s.replaceFirst(String.valueOf(t.charAt(i)), "");;
-            } else {
-                return t.charAt(i);
-            }
-        }
-        return 0;
+        char c=0;
+        for (char cs:s.toCharArray()) c^=cs;
+        for (char cs:t.toCharArray()) c^=cs;
+        return c;
     }
 }
 // @lc code=end
