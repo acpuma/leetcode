@@ -7,21 +7,23 @@
 // @lc code=start
 class Solution {
     public boolean isAlienSorted(String[] words, String order) {
+        int[] orders = new int[26];
+        for (int i=0; i<order.length(); i++) {
+            orders[order.charAt(i)-'a'] = i;
+        }
         for (int i=0; i<words.length-1; i++) {
             for (int j=0; j<words[i].length(); j++) {
-                if (j<words[i+1].length() && j<words[i].length()) {
-                    char c=words[i].charAt(j);
-                    char nextc=words[i+1].charAt(j);
-                    if (c!=nextc) {
-                        if (order.indexOf(c)>order.indexOf(nextc)) {
-                            return false;
-                        } else {
-                            break;
-                        }
+                if (j>=words[i+1].length()) return false;
+                int c=words[i].charAt(j)-'a';
+                int nextc=words[i+1].charAt(j)-'a';
+                if (c!=nextc) {
+                    if (orders[c]>orders[nextc]) {
+                        return false;
+                    } else {
+                        break;
                     }
-                } else {
-                    return false;
                 }
+            
             }
         }
         return true;
